@@ -38,14 +38,47 @@ Tasks:
 
 Documentation is somewhat sparse here intentionally. As you get the components running, please update instructions here wtih an improved set of instructions (and feel free to make updates to the repo itself for cleaner setup!).
 
+## Clone the forked repo
+- git clone https://github.com/<your-username>/<repo-name>.git
+- cd <repo-name>
+
 ## Run the Python app
 - You'll need to determine and install dependencies in a virtual environment
-- Run the app itself with `python app.py`
+- pip install flask flask_cors pytest
+- Run the backend itself with `python app.py`
+
 
 ## Run the frontend
+- Navigate to the simple-ts-ui Directory
 - You'll need to install npm and run `npm install`
 - frontend itself can be run with `http .` if you `npm install -g http-server`
+
+## Playwright Setup
+- Install Playwright `npx playwright install`
+
+## Run backend and frontend tests
+- Run backend tests using pytest with `pytest tests/test_app.py`
+- Run frontend tests with `npx playwright test`
 
 
 # Testing Approach
 Your approach here!
+
+# API Testing (Backend):
+
+- Using pytest and requests:
+	•	Write unit tests to validate the /submit-name endpoint:
+	•	Positive case: JSON payload with a valid name.
+	•	Negative cases: Invalid payloads (e.g., missing name, wrong data types).
+# UI Testing (Frontend):
+
+- Using Playwright:
+	•	Test form rendering, input validation, and dynamic message display.
+	•	Validate the integration with the Flask backend.
+
+# End-to-End Testing:
+
+- Combine both testing levels to ensure real-world workflows work as expected:
+	•	Open the frontend.
+	•	Submit the form.
+	•	Verify API integration and UI updates.
