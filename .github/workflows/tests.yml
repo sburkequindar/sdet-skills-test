@@ -13,17 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.9"
 
-      # Step 3: Install backend dependencies
       - name: Install Python dependencies
         run: |
           python -m venv venv
@@ -31,28 +28,28 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Step 4: Run backend tests
       - name: Run Pytest
         run: |
           source venv/bin/activate
           export PYTHONPATH=.
           pytest
 
-      # Step 5: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "18"
 
-      # Step 6: Install frontend dependencies
-      - name: Install npm dependencies
+      - name: Install frontend dependencies
         run: |
           cd simple-ts-ui
           npm install
 
-      # Step 7: Run Playwright tests
-      - name: Run Playwright tests
+      - name: Install Playwright Browsers
         run: |
           cd simple-ts-ui
           npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: |
+          cd simple-ts-ui
           npx playwright test
