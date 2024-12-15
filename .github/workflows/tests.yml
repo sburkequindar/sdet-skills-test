@@ -54,4 +54,6 @@ jobs:
         run: |
           cd simple-ts-ui
           npx playwright install --with-deps
-          npx playwright test --headless
+          npx playwright test 
+          env:
+            CI: true

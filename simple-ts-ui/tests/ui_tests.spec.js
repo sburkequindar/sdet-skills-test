@@ -1,6 +1,10 @@
 const { test, expect } = require("@playwright/test");
 const { SubmitPage } = require("./pages/submit_page");
 
+test.use({
+    headless: process.env.CI === 'true', 
+  });
+
 test.describe("Submit Name Page Tests", () => {
   let page;
   let submitPage;
