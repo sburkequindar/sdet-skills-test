@@ -53,4 +53,5 @@ jobs:
       - name: Run Playwright tests
         run: |
           cd simple-ts-ui
-          npx playwright test
+          npx playwright install --with-deps
+          npx playwright test --headless
