@@ -39,14 +39,11 @@ Tasks:
 Documentation is somewhat sparse here intentionally. As you get the components running, please update instructions here wtih an improved set of instructions (and feel free to make updates to the repo itself for cleaner setup!).
 
 ## Clone the forked repo
-- git clone https://github.com/<your-username>/<repo-name>.git
-- cd <repo-name>
 
 ## Run the Python app
 - You'll need to determine and install dependencies in a virtual environment
 - pip install flask flask_cors pytest
 - Run the backend itself with `python app.py`
-
 
 ## Run the frontend
 - Navigate to the simple-ts-ui Directory
@@ -82,3 +79,11 @@ Your approach here!
 	•	Open the frontend.
 	•	Submit the form.
 	•	Verify API integration and UI updates.
+
+## Suggestions for the devs:
+
+- The backend does not check for case-insensitive matching for “Waldo.”
+- The backend accepts null, empty strings, and whitespace names without validation.
+- The backend fails to correctly handle non-JSON content types.
+
+
