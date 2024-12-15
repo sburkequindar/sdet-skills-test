@@ -43,6 +43,7 @@ jobs:
         run: |
           cd simple-ts-ui
           npm install
+          npm install @playwright/test --save-dev
 
       - name: Install Playwright Browsers
         run: |
