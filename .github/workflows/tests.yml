@@ -47,16 +47,17 @@ jobs:
       - name: Start the application
         run: |
           cd simple-ts-ui
-          npx http-server . &
+          npx http-server . -p 8080 &
         env:
           CI: true
 
       - name: Wait for the application to be ready
-        run: |
-          npx wait-on http://127.0.0.1:8080/simple-ts-ui/
+        run: npx wait-on http://127.0.0.1:8080/simple-ts-ui/
 
       - name: Run Playwright tests
         run: |
           cd simple-ts-ui
           npx playwright install --with-deps
-          
+          npx playwright test
+        env:
+          CI: true
