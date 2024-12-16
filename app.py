@@ -14,14 +14,15 @@ def submit_name():
     if not data or 'name' not in data:
         return jsonify({"error": "Name is required"}), 400
     
-    if data["name"] == "Waldo"
-        return ValueError("You aren't Waldo - a real Waldo wouldn't reveal their identity!")
+    if data["name"] == "Waldo":
+        return jsonify({"error": "You aren't Waldo - a real Waldo wouldn't reveal their identity!"}), 403
 
-    name = data['input_name']
+
+    name = data['name']
     
     # Simple response message
     return jsonify({"message": f"Name submitted successfully: {name}"}), 200
 
 if __name__ == '__main__':
     # Run the Flask app locally on port 5000
-    app.run(debug=True, host='127.0.0.1', port=5001)
+    app.run(debug=True, host='127.0.0.1', port=5000)

@@ -1,0 +1,63 @@
+name: Run Backend and Frontend Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-backend-and-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Install Python dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Pytest
+        run: |
+          source venv/bin/activate
+          export PYTHONPATH=.
+          pytest
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install npm dependencies
+        run: |
+          cd simple-ts-ui
+          npm install
+
+      - name: Start the application
+        run: |
+          cd simple-ts-ui
+          npx http-server . -p 8080 &
+        env:
+          CI: true
+
+      - name: Wait for the application to be ready
+        run: npx wait-on http://127.0.0.1:8080/simple-ts-ui/
+
+      - name: Run Playwright tests
+        run: |
+          cd simple-ts-ui
+          npx playwright install --with-deps
+          npx playwright test
+        env:
+          CI: true
