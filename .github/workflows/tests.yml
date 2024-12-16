@@ -47,7 +47,7 @@ jobs:
       - name: Start the application
         run: |
           cd simple-ts-ui
-          npm run start &
+          npx http-server . &
         env:
           CI: true
 
